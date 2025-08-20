@@ -1,0 +1,92 @@
+
+.fancybox__content>.f-button.is-close-btn{
+    display: none;
+}
+#feedback-popup{
+    width: 460px;
+    border-radius: 24px;
+    padding: 40px;
+    background: linear-gradient(181.01deg, #F0F1F4 1.88%, #C5C7D3 55.56%);
+    display: none;
+}
+
+.feedback-popup{
+    position: relative;
+    .close-popup{
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        cursor: pointer;
+    }
+
+    input{
+        width: 100%;
+        padding: 17px 20px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+    }
+    input::placeholder{
+        color: #CDD1D2;
+
+    }
+    .btn{
+        width: 100%;
+        margin-top: 16px;
+    }
+
+    &_privacy{
+        position: relative;
+        padding-left: 40px;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 100%;
+        margin-top: 16px;
+        color: #70828A;
+
+        a{
+            color: #0071E3;
+        }
+
+        input[type="checkbox"]{
+            display: none;
+        }
+        input[type="checkbox"]:checked ~ label{
+            background-color: #0071E3;
+        }
+        label{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background-color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+    }
+
+    // Стили для сообщения благодарности
+    .feedback-success {
+        text-align: center;
+        
+        h5 {
+            margin-bottom: 32px;
+            margin-top: 0;
+        }
+        
+        p {
+            margin-bottom: 32px;
+            color: #70828A;
+        }
+        
+        .success-btn {
+            width: 100%;
+        }
+    }
+}
