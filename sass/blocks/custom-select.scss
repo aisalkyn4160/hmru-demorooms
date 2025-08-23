@@ -31,6 +31,7 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
+            box-sizing: border-box;
             border: 1px solid #E1E1E5;
             transition: transform 0.3s ease;
         }
