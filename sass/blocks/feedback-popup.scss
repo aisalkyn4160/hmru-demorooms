@@ -1,13 +1,10 @@
 
-.fancybox__content>.f-button.is-close-btn{
-    // display: none;
-}
+
 #feedback-popup{
     width: 460px;
     border-radius: 24px;
     padding: 40px;
     background: linear-gradient(181.01deg, #F0F1F4 1.88%, #C5C7D3 55.56%);
-    display: none;
 }
 
 .feedback-popup{
@@ -18,7 +15,10 @@
         right: 16px;
         cursor: pointer;
     }
-
+    h5 {
+        margin-bottom: 32px;
+        margin-top: 0;
+    }
     input{
         width: 100%;
         padding: 17px 20px;
@@ -75,10 +75,7 @@
     .feedback-success {
         text-align: center;
         
-        h5 {
-            margin-bottom: 32px;
-            margin-top: 0;
-        }
+       
         
         p {
             margin-bottom: 32px;

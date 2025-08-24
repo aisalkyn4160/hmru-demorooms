@@ -131,3 +131,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// ----------------------------popup----------------------------
+
+document.addEventListener('DOMContentLoaded', function(){
+    const popup = document.querySelector('.popup')
+    const popupShowBtns = document.querySelectorAll('.show-popup')
+    const closeFormBtn = document.querySelector('.close-popup')
+
+    popupShowBtns.forEach(item => {
+        item.addEventListener('click', () => {
+            popup.classList.add('active')
+            document.body.classList.add('no-scroll')
+        })
+    })
+
+    closeFormBtn.addEventListener('click', () => {
+        popup.classList.remove('active')
+        document.body.classList.remove('no-scroll')
+    })
+
+    document.addEventListener('click', (event) => {
+        if (event.target === popup) {
+            popup.classList.remove('active')
+            document.body.classList.remove('no-scroll')
+        }
+    });
+});
