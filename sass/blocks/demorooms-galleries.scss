@@ -5,7 +5,11 @@
 
         &-left{
             max-width: 1260px;
-            P:last-of-type{
+
+            p span{
+              display: block;
+            }
+            p:last-of-type{
                 max-width: 625px;
             }
         }
@@ -34,12 +38,13 @@
         align-items: center;
 
         .custom-select{
-            width: 25%;
+            width: calc(25.3% - 16px);
             min-width: 285px;
             margin-right: 16px;
         }
 
         &-addresses{
+            width: 75%;
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
@@ -49,7 +54,7 @@
         .region_address,
         .region_work-hours,
         .region_phone{
-            width: 32%;
+            width: calc(100% / 3 - 16px);
             min-width: 215px;
             flex-grow: 1;
             display: flex;

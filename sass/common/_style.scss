@@ -76,8 +76,9 @@ html {
 }
 
 body {
-  font-family: var(--font-family) !important;
+  font-family: 'Onest', sans-serif;
   font-style: normal;
+  line-height: normal;
   overflow-x: hidden;
   color: #303239;
   cursor: default;
@@ -207,7 +208,6 @@ h4 {
 h5{
   font-size: 28px;
   color: #2C3336;
-  line-height: 100%;
   margin-bottom: 20px;
 }
 h6{
@@ -220,7 +220,6 @@ h6{
 p{
   font-weight: 400;
   font-size: 18px;
-  line-height: 100%;
   color: #70828A;
   margin-bottom: 24px;
 }
