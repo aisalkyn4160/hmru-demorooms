@@ -46,31 +46,33 @@
     
     .select-items {
         width: max-content;
+        min-width: 150px;
         position: absolute;
         background-color: #fff;
         top: 100%;
         left: 0;
         right: 0;
         z-index: 99;
-        border: 1px solid #E1E1E5;
+        border-radius: 8px;
         overflow-y: auto;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 1px 1px 0px #00000003;
+
         
         div {
             color: #303239;
-            padding: 14px 20px;
+            padding: 14.5px 16px;
             cursor: pointer;
             user-select: none;
             font-size: 18px;
             font-weight: 500;
+            line-height: 23px;
+            letter-spacing: 0;
             
             &:hover {
                 color: #0071E3;
             }
             
-            &.same-as-selected {
-                background-color: #e6e6ea;
-            }
+        
         }
     }
     
