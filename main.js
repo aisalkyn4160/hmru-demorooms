@@ -100,44 +100,16 @@ if(document.querySelectorAll('.scheme__item')) {
     })
 }
 
-// Обработка формы обратной связи
-document.addEventListener('DOMContentLoaded', function() {
-    const feedbackForm = document.querySelector('#feedback-popup form');
-    const feedbackSuccess = document.querySelector('.feedback-success');
-    const successBtn = document.querySelector('.success-btn');
-    
-    if (feedbackForm) {
-        feedbackForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Предотвращаем стандартную отправку формы
-            
-            // Скрываем форму и показываем сообщение благодарности
-            feedbackForm.style.display = 'none';
-            feedbackSuccess.style.display = 'block';
-        });
-    }
-    
-    // Обработчик кнопки "Хорошо"
-    if (successBtn) {
-        successBtn.addEventListener('click', function() {
-            // Закрываем попап
-            Fancybox.close();
-            
-            // Сбрасываем состояние попапа для следующего открытия
-            setTimeout(() => {
-                feedbackForm.style.display = 'block';
-                feedbackSuccess.style.display = 'none';
-                feedbackForm.reset(); // Очищаем форму
-            }, 300);
-        });
-    }
-});
+// Старый код для test-popup удален - теперь используется отдельная функция
 
 // ----------------------------popup----------------------------
-
 document.addEventListener('DOMContentLoaded', function(){
-    const popup = document.querySelector('.popup')
+    const popup = document.querySelector('.callback-popup')
     const popupShowBtns = document.querySelectorAll('.show-popup')
     const closeFormBtn = document.querySelector('.close-popup')
+    const feedbackForm = document.querySelector('#feedback-popup form')
+    const feedbackSuccess = document.querySelector('.feedback-success')
+    const successBtn = document.querySelector('.success-btn')
 
     popupShowBtns.forEach(item => {
         item.addEventListener('click', () => {
@@ -147,18 +119,247 @@ document.addEventListener('DOMContentLoaded', function(){
     })
 
     closeFormBtn.addEventListener('click', () => {
+        // Сначала сбрасываем форму
+        feedbackForm.reset()
+        // Затем скрываем popup
         popup.classList.remove('active')
         document.body.classList.remove('no-scroll')
+        // И только после закрытия возвращаем исходное состояние формы
+        setTimeout(() => {
+            feedbackForm.style.display = 'block'
+            feedbackSuccess.style.display = 'none'
+        }, 300) // Задержка, соответствующая времени анимации закрытия попапа
+    })
+
+    // Обработчик отправки формы
+    feedbackForm.addEventListener('submit', (event) => {
+        event.preventDefault() // Предотвращаем стандартную отправку формы
+        
+        // Скрываем форму и показываем блок успеха
+        feedbackForm.style.display = 'none'
+        feedbackSuccess.style.display = 'block'
+    })
+
+    // Обработчик кнопки "Хорошо" в блоке успеха
+    successBtn.addEventListener('click', () => {
+        // Сначала сбрасываем состояние для следующего использования
+        feedbackForm.reset() // Очищаем форму
+        setTimeout(() => {
+            // Затем скрываем popup
+            popup.classList.remove('active')
+            document.body.classList.remove('no-scroll')
+            // И только после этого возвращаем исходное состояние формы
+            setTimeout(() => {
+                feedbackForm.style.display = 'block'
+                feedbackSuccess.style.display = 'none'
+            }, 300) // Задержка, соответствующая времени анимации закрытия попапа
+        }, 0)
     })
 
     document.addEventListener('click', (event) => {
         if (event.target === popup) {
+            // Сначала сбрасываем форму
+            feedbackForm.reset()
+            // Затем скрываем popup
             popup.classList.remove('active')
             document.body.classList.remove('no-scroll')
+            // И только после закрытия возвращаем исходное состояние формы
+            setTimeout(() => {
+                feedbackForm.style.display = 'block'
+                feedbackSuccess.style.display = 'none'
+            }, 300) // Задержка, соответствующая времени анимации закрытия попапа
+        }
+    });
+});
+// ----------------------------service-popup----------------------------
+document.addEventListener('DOMContentLoaded', function(){
+    const servicePopup = document.querySelector('.service-popup')
+    const servicePopupShowBtns = document.querySelectorAll('.show-service-popup')
+    const serviceCloseFormBtn = document.querySelector('.service-popup .close-popup')
+    const serviceForm = document.querySelector('#service-popup form')
+    const serviceSuccess = document.querySelector('.service-popup .feedback-success')
+    const serviceSuccessBtn = document.querySelector('.service-popup .success-btn')
+    
+    // Обработчики для открытия service-popup
+    servicePopupShowBtns.forEach(item => {
+        item.addEventListener('click', () => {
+            servicePopup.classList.add('active')
+            document.body.classList.add('no-scroll')
+        })
+    })
+    
+    // Обработчик закрытия по крестику
+    serviceCloseFormBtn.addEventListener('click', () => {
+        // Сначала сбрасываем форму
+        serviceForm.reset()
+        // Затем скрываем popup
+        servicePopup.classList.remove('active')
+        document.body.classList.remove('no-scroll')
+        // И только после закрытия возвращаем исходное состояние формы
+        setTimeout(() => {
+            serviceForm.style.display = 'block'
+            serviceSuccess.style.display = 'none'
+        }, 300) // Задержка, соответствующая времени анимации закрытия попапа
+    })
+    
+    // Обработчик отправки формы сервиса
+    serviceForm.addEventListener('submit', (event) => {
+        event.preventDefault() // Предотвращаем стандартную отправку формы
+        
+        // Скрываем форму и показываем блок успеха
+        serviceForm.style.display = 'none'
+        serviceSuccess.style.display = 'block'
+    })
+    
+    // Обработчик кнопки "Хорошо" в блоке успеха сервиса
+    serviceSuccessBtn.addEventListener('click', () => {
+        // Сначала сбрасываем состояние для следующего использования
+        serviceForm.reset() // Очищаем форму
+        setTimeout(() => {
+            // Затем скрываем popup
+            servicePopup.classList.remove('active')
+            document.body.classList.remove('no-scroll')
+            // И только после этого возвращаем исходное состояние формы
+            setTimeout(() => {
+                serviceForm.style.display = 'block'
+                serviceSuccess.style.display = 'none'
+            }, 300) // Задержка, соответствующая времени анимации закрытия попапа
+        }, 0)
+    })
+    
+    // Закрытие по клику вне формы
+    document.addEventListener('click', (event) => {
+        if (event.target === servicePopup) {
+            // Сначала сбрасываем форму
+            serviceForm.reset()
+            // Затем скрываем popup
+            servicePopup.classList.remove('active')
+            document.body.classList.remove('no-scroll')
+            // И только после закрытия возвращаем исходное состояние формы
+            setTimeout(() => {
+                serviceForm.style.display = 'block'
+                serviceSuccess.style.display = 'none'
+            }, 300) // Задержка, соответствующая времени анимации закрытия попапа
         }
     });
 });
 
+// ----------------------------subscribe-popup----------------------------
+document.addEventListener('DOMContentLoaded', function(){
+    const subscribePopup = document.querySelector('.subscribe-popup')
+    const subscribeForm = document.querySelector('.footer__form')
+    const subscribeSuccess = document.querySelector('.subscribe-popup .feedback-success')
+    const subscribeSuccessBtn = document.querySelector('.subscribe-popup .success-btn')
+    const subscribeCloseFormBtn = document.querySelector('.subscribe-popup .close-popup')
+    
+    // Обработчик отправки формы подписки
+    subscribeForm.addEventListener('submit', (event) => {
+        event.preventDefault() // Предотвращаем стандартную отправку формы
+        
+        // Показываем popup с благодарностью
+        subscribePopup.classList.add('active')
+        document.body.classList.add('no-scroll')
+        
+        // Сбрасываем форму
+        subscribeForm.reset()
+    })
+    
+    // Обработчик кнопки "Хорошо" в блоке успеха подписки
+    subscribeSuccessBtn.addEventListener('click', () => {
+        // Скрываем popup
+        subscribePopup.classList.remove('active')
+        document.body.classList.remove('no-scroll')
+    })
+    
+    // Обработчик закрытия по крестику
+    subscribeCloseFormBtn.addEventListener('click', () => {
+        // Скрываем popup
+        subscribePopup.classList.remove('active')
+        document.body.classList.remove('no-scroll')
+    })
+    
+    // Закрытие по клику вне формы
+    document.addEventListener('click', (event) => {
+        if (event.target === subscribePopup) {
+            // Скрываем popup
+            subscribePopup.classList.remove('active')
+            document.body.classList.remove('no-scroll')
+        }
+    });
+ });
+
+// ----------------------------test-popup----------------------------
+document.addEventListener('DOMContentLoaded', function(){
+    const testPopup = document.querySelector('.test-popup')
+    const testPopupShowBtns = document.querySelectorAll('.show-test-popup')
+    const testCloseFormBtn = document.querySelector('.test-popup .close-popup')
+    const testForm = document.querySelector('#test-popup form')
+    const testSuccess = document.querySelector('.test-popup .feedback-success')
+    const testSuccessBtn = document.querySelector('.test-popup .success-btn')
+    
+    // Обработчики для открытия test-popup
+    testPopupShowBtns.forEach(item => {
+        item.addEventListener('click', () => {
+            testPopup.classList.add('active')
+            document.body.classList.add('no-scroll')
+        })
+    })
+    
+    // Обработчик закрытия по крестику
+    testCloseFormBtn.addEventListener('click', () => {
+        // Сначала сбрасываем форму
+        testForm.reset()
+        // Затем скрываем popup
+        testPopup.classList.remove('active')
+        document.body.classList.remove('no-scroll')
+        // И только после закрытия возвращаем исходное состояние формы
+        setTimeout(() => {
+            testForm.style.display = 'block'
+            testSuccess.style.display = 'none'
+        }, 300) // Задержка, соответствующая времени анимации закрытия попапа
+    })
+    
+    // Обработчик отправки формы тестирования
+    testForm.addEventListener('submit', (event) => {
+        event.preventDefault() // Предотвращаем стандартную отправку формы
+        
+        // Скрываем форму и показываем блок успеха
+        testForm.style.display = 'none'
+        testSuccess.style.display = 'block'
+    })
+    
+    // Обработчик кнопки "Хорошо" в блоке успеха тестирования
+    testSuccessBtn.addEventListener('click', () => {
+        // Сначала сбрасываем состояние для следующего использования
+        testForm.reset() // Очищаем форму
+        setTimeout(() => {
+            // Затем скрываем popup
+            testPopup.classList.remove('active')
+            document.body.classList.remove('no-scroll')
+            // И только после этого возвращаем исходное состояние формы
+            setTimeout(() => {
+                testForm.style.display = 'block'
+                testSuccess.style.display = 'none'
+            }, 300) // Задержка, соответствующая времени анимации закрытия попапа
+        }, 0)
+    })
+    
+    // Закрытие по клику вне формы
+    document.addEventListener('click', (event) => {
+        if (event.target === testPopup) {
+            // Сначала сбрасываем форму
+            testForm.reset()
+            // Затем скрываем popup
+            testPopup.classList.remove('active')
+            document.body.classList.remove('no-scroll')
+            // И только после закрытия возвращаем исходное состояние формы
+            setTimeout(() => {
+                testForm.style.display = 'block'
+                testSuccess.style.display = 'none'
+            }, 300) // Задержка, соответствующая времени анимации закрытия попапа
+        }
+    });
+});
 
 //toggle catalog
 document.addEventListener('DOMContentLoaded', () => {
