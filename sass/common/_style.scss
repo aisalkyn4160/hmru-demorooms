@@ -67,7 +67,9 @@ select {
   outline: none;
   border: none;
 }
-
+button{
+  cursor: pointer;
+}
 html {
   scroll-behavior: smooth;
   &.lock {
@@ -85,7 +87,6 @@ body {
   position: relative;
   background: #F7F7F8;
   scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
 }
 
 .container {
@@ -231,7 +232,7 @@ p{
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   color: #fff;
   background-color: #0071E3;
   transition: all .3s ease;
