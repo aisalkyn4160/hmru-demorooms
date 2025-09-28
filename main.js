@@ -479,3 +479,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 });
+
+// --------------------------------catalog-menu-accordion--------------------------------
+$(function () {
+    $('.sublist__arrow').click(function () {
+        $(this).toggleClass('active')
+        $(this).siblings('ul').slideToggle();
+    })
+})
