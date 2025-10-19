@@ -6,7 +6,66 @@ import './sass/_app.scss';
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import 'swiper/css/bundle';
 
-Fancybox.bind("[data-fancybox]", {})
+Fancybox.bind("[data-fancybox]", {
+    on: {
+        "reveal": (fancybox, slide) => {
+            // Применяем стили сразу при открытии, без задержки
+            const images = document.querySelectorAll('.fancybox__container img, .fancybox-image');
+            
+            images.forEach(img => {
+                // Проверяем сразу, если изображение уже загружено
+                if (img.complete && img.naturalWidth > 0) {
+                    checkImageWidth(img);
+                } else {
+                    // Если не загружено, ждем загрузки
+                    img.onload = () => checkImageWidth(img);
+                }
+            });
+        },
+        "ready": (fancybox, slide) => {
+            // Дополнительная проверка когда слайд готов
+            const images = document.querySelectorAll('.fancybox__container img, .fancybox-image');
+            images.forEach(img => {
+                if (img.complete && img.naturalWidth > 0) {
+                    checkImageWidth(img);
+                }
+            });
+        }
+    }
+})
+
+// Функция для проверки ширины изображения
+function checkImageWidth(img) {
+    const naturalWidth = img.naturalWidth || img.width;
+    
+    if (naturalWidth > 1200) {
+        img.classList.add('wide-image');
+        img.style.setProperty('object-fit', 'cover', 'important');
+        img.style.setProperty('width', '100%', 'important');
+        
+    } else {
+        img.classList.remove('wide-image');
+        img.style.removeProperty('object-fit');
+        img.style.removeProperty('width');
+    }
+}
+
+// Предварительная проверка по имени файла (для мгновенного применения)
+function preCheckImageByName(img) {
+    const src = img.src || img.getAttribute('src');
+    if (!src) return;
+    
+    // Создаем временное изображение для получения размеров
+    const tempImg = new Image();
+    tempImg.onload = function() {
+        if (this.naturalWidth > 1200) {
+            img.classList.add('wide-image');
+            img.style.setProperty('object-fit', 'cover', 'important');
+            img.style.setProperty('width', '100%', 'important');
+        }
+    };
+    tempImg.src = src;
+}
 
 new MaskInput("[data-maska]") // for masked input
 
